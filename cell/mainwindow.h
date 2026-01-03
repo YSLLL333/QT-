@@ -19,6 +19,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void initPage();
+    void dealMenu();
 private:
     Ui::MainWindow *ui;
     UserMgr *m_userPage;
