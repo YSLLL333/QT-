@@ -2,6 +2,7 @@
 #define SQLMGR_H
 
 #include<QtDebug>
+#include<QSqlDatabase>
 class SqlMgr
 {
 public:
@@ -16,6 +17,7 @@ public:
         return instance;
     }
 
+    void init();
     //登录
     bool login(QString strUser , QString strPass);
 
@@ -53,6 +55,7 @@ public:
     QString ClrRecord();
 
 private:
+    QSqlDatabase m_db;
 };
 
 #endif // SQLMGR_H

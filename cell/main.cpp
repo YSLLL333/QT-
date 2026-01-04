@@ -8,8 +8,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    SqlMgr::getinstance()->test();
-    SqlMgr::getinstance()->test();
+    SqlMgr::getinstance()->init();
     Login dlg;
     int ret=dlg.exec();
 
