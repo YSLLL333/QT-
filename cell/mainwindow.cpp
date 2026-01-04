@@ -37,11 +37,13 @@ void MainWindow::initPage()
             connect(static_cast<QPushButton*>(it),&QPushButton::clicked,this,&MainWindow::dealMenu);
         }
     }
+    m_userPage->initPage();
 }
 void MainWindow::dealMenu(){
     auto str=sender()->objectName();
     do{
         if("btn_user"==str){
+            m_userPage->initPage();
             ui->stackedWidget->setCurrentIndex(0);
 
             break;

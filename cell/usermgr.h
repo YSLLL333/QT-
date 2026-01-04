@@ -14,6 +14,13 @@ class UserMgr : public QWidget
 public:
     explicit UserMgr(QWidget *parent = nullptr);
     ~UserMgr();
+    void initPage(QString strCondition = "");
+private slots:
+    void on_le_srch_textChanged(const QString &arg1);
+
+    void on_btn_imprt_clicked();
+
+    void on_btn_del_clicked();
 
 private:
     Ui::UserMgr *ui;

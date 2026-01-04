@@ -1,6 +1,6 @@
 #include "usermgr.h"
 #include "ui_usermgr.h"
-
+#include "lib/sqlmgr.h"
 UserMgr::UserMgr(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::UserMgr)
@@ -9,8 +9,8 @@ UserMgr::UserMgr(QWidget *parent)
     ui->tableView->setModel(&m_model);
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
-    m_model.setHorizontalHeaderLabels(QStringList{"用户id","年级","部门","用户名","密码","昵称","权限"});
-#if 1
+    m_model.setHorizontalHeaderLabels(QStringList{"用户id","用户名","密码","昵称","权限","部门","年级"});
+#if 0
     for(int i =0;i<10;i++){    QList<QStandardItem*> items;
         items.append(new QStandardItem("1"));
         items.append(new QStandardItem("1年1班"));
@@ -21,10 +21,45 @@ UserMgr::UserMgr(QWidget *parent)
         items.append(new QStandardItem("学生"));
         m_model.appendRow(items);
     }
+    #endif
 }
-#endif
+
 
 UserMgr::~UserMgr()
 {
     delete ui;
 }
+
+void UserMgr::initPage(QString strCondition)
+{
+    //查询数据库并显示
+    auto l=SqlMgr::getinstance()->getUser(strCondition);
+    m_model.clear();
+    m_model.setHorizontalHeaderLabels(QStringList{"用户id","用户名","密码","昵称","权限","部门","年级"});
+    for(int i =0;i<l.size();i++){    QList<QStandardItem*> items;
+
+        for(int j=0;j<l[i].size();j++){
+            items.append(new QStandardItem(l[i][j]));
+        }
+        m_model.appendRow(items);
+    }
+}
+
+
+void UserMgr::on_le_srch_textChanged(const QString &arg1)
+{
+
+}
+
+
+void UserMgr::on_btn_imprt_clicked()
+{
+    //导入用户
+}
+
+
+void UserMgr::on_btn_del_clicked()
+{
+    //删除用户
+}
+
