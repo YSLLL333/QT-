@@ -55,3 +55,13 @@ QVector<QStringList> SqlMgr::getUser(QString strCondition)
     return vec;
 }
 
+void SqlMgr::DelUser(QString strid)
+{
+    QSqlQuery q(m_db);
+    QString strSql = QString("delete from user where userid =%1").arg(strid);
+    bool ret = q.exec(strSql);
+    if(!ret){
+        qDebug()<<q.lastError().text();
+    }
+}
+

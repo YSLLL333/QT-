@@ -1,6 +1,7 @@
 #include "usermgr.h"
 #include "ui_usermgr.h"
 #include "lib/sqlmgr.h"
+#include<QMessageBox>
 UserMgr::UserMgr(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::UserMgr)
@@ -48,7 +49,8 @@ void UserMgr::initPage(QString strCondition)
 
 void UserMgr::on_le_srch_textChanged(const QString &arg1)
 {
-
+    QString strCond = QString("where username like '%%1%' or nickname like '%%1%'").arg(arg1);
+    initPage(strCond);
 }
 
 
@@ -61,5 +63,14 @@ void UserMgr::on_btn_imprt_clicked()
 void UserMgr::on_btn_del_clicked()
 {
     //删除用户
+   int r = ui->tableView->currentIndex().row();
+    if(r<0){
+       QMessageBox::information(nullptr,"信息","无选中用户");
+    }else
+    {
+        auto id = m_model.item(r,0)->text();
+        SqlMgr::getinstance()->DelUser(id);
+        initPage();
+    }
 }
 
