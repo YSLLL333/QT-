@@ -6,6 +6,8 @@ BookMgr::BookMgr(QWidget *parent)
     , ui(new Ui::BookMgr)
 {
     ui->setupUi(this);
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
 BookMgr::~BookMgr()

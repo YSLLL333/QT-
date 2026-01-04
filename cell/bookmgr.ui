@@ -13,14 +13,24 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="name" stdset="0">
+   <string>bg</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="3" column="0">
-    <widget class="QTableView" name="tableView"/>
+    <widget class="QTableView" name="tableView">
+     <property name="name" stdset="0">
+      <string>table</string>
+     </property>
+    </widget>
    </item>
    <item row="0" column="0">
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="lb_title">
      <property name="text">
       <string>图书管理</string>
+     </property>
+     <property name="name" stdset="0">
+      <string>title</string>
      </property>
     </widget>
    </item>
@@ -32,6 +42,9 @@
         <property name="text">
          <string>修改</string>
         </property>
+        <property name="name" stdset="0">
+         <string>btn</string>
+        </property>
        </widget>
       </item>
       <item row="0" column="0">
@@ -42,15 +55,25 @@
         <property name="alignment">
          <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
+        <property name="name" stdset="0">
+         <string>lb</string>
+        </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEdit"/>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="name" stdset="0">
+         <string>le</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="4">
        <widget class="QPushButton" name="pushButton_4">
         <property name="text">
          <string>删除</string>
+        </property>
+        <property name="name" stdset="0">
+         <string>btn</string>
         </property>
        </widget>
       </item>
@@ -58,6 +81,9 @@
        <widget class="QPushButton" name="pushButton_3">
         <property name="text">
          <string>借阅</string>
+        </property>
+        <property name="name" stdset="0">
+         <string>btn</string>
         </property>
        </widget>
       </item>
@@ -79,12 +105,18 @@
         <property name="text">
          <string>增加</string>
         </property>
+        <property name="name" stdset="0">
+         <string>btn</string>
+        </property>
        </widget>
       </item>
       <item row="0" column="6">
        <widget class="QPushButton" name="pushButton_5">
         <property name="text">
          <string>归还</string>
+        </property>
+        <property name="name" stdset="0">
+         <string>btn</string>
         </property>
        </widget>
       </item>

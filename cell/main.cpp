@@ -2,9 +2,14 @@
 
 #include <QApplication>
 #include "login.h"
+
+#include "lib/sqlmgr.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    SqlMgr::getinstance()->test();
+    SqlMgr::getinstance()->test();
     Login dlg;
     int ret=dlg.exec();
 

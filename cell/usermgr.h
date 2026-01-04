@@ -2,7 +2,7 @@
 #define USERMGR_H
 
 #include <QWidget>
-
+#include<QStandardItemModel>
 namespace Ui {
 class UserMgr;
 }
@@ -17,6 +17,7 @@ public:
 
 private:
     Ui::UserMgr *ui;
+    QStandardItemModel m_model;
 };
 
 #endif // USERMGR_H
