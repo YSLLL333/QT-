@@ -1,5 +1,8 @@
 #include "sqlmgr.h"
 #include <QCoreApplication>
+#include<QSqlQuery>
+#include<QSqlError>
+#include<QSqlRecord>
 SqlMgr* SqlMgr::instance = nullptr;
 
 SqlMgr::SqlMgr() {}
@@ -19,7 +22,36 @@ void SqlMgr::init()
 
 bool SqlMgr::login(QString strUser, QString strPass)
 {
+    QSqlQuery q(m_db);
+    QString strSql = QString("Select * from user where username='%1' and password ='%2'").arg(strUser).arg(strPass);
+    bool ret = q.exec(strSql);
+    if(!ret){
+        qDebug()<<q.lastError().text();
+    }
+    return ret;
+}
 
+QVector<QStringList> SqlMgr::getUser(QString strCondition)
+{
+    QSqlQuery q(m_db);
+    QString strSql = QString("Select * from user %1").arg(strCondition);
 
+    QVector<QStringList> vec;
+    bool ret = q.exec(strSql);
+    if(!ret){
+        qDebug()<<q.lastError().text();
+    }else
+    {
+        int iC = q.record().count();
+        QStringList l;
+        while(q.next()){
+            l.clear();
+            for(int i=0;i<iC;i++ ){
+                l<<q.value(i).toString();
+            }
+            vec.push_back(l);
+        }
+    }
+    return vec;
 }
 
