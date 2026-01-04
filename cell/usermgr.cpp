@@ -2,6 +2,8 @@
 #include "ui_usermgr.h"
 #include "lib/sqlmgr.h"
 #include<QMessageBox>
+#include <QFileDialog>
+
 UserMgr::UserMgr(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::UserMgr)
@@ -57,6 +59,26 @@ void UserMgr::on_le_srch_textChanged(const QString &arg1)
 void UserMgr::on_btn_imprt_clicked()
 {
     //导入用户
+    auto strPath = QFileDialog::getOpenFileName(nullptr,"输入文件路径");
+    if(strPath.isEmpty()){
+        QFile f(strPath);
+        f.open(QFile::ReadOnly);
+        QVector<QStringList> vecData;
+        while(f.atEnd()){
+            QString str = f.readLine();
+            auto l = str.split(",");
+            if(l.size()!=6){
+                QMessageBox::information(nullptr,"信息","导入失败");
+                return;
+            }
+            l[l.size()-1] = l[l.size()-1].chopped(2);
+            vecData.push_back(l);
+        }
+        SqlMgr::getinstance()->AddUser(vecData);
+        ui->le_srch->clear();
+        initPage();
+    }
+
 }
 
 

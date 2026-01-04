@@ -55,6 +55,21 @@ QVector<QStringList> SqlMgr::getUser(QString strCondition)
     return vec;
 }
 
+void SqlMgr::AddUser(QVector<QStringList> v)
+{
+    m_db.transaction();
+    QSqlQuery q(m_db);
+    for(auto it:v){
+        QString strSql = QString("insert into user VALUES(NULL,'%1','%2','%3','%4','%5','%6');").arg(it[0]).arg(it[1]).arg(it[2]).arg(it[3]).arg(it[4]).arg(it[5]);
+        bool ret = q.exec(strSql);
+        if(!ret){
+            qDebug()<<q.lastError().text();
+        }
+    }
+
+    m_db.commit();
+}
+
 void SqlMgr::DelUser(QString strid)
 {
     QSqlQuery q(m_db);
