@@ -16,7 +16,43 @@ public:
         return instance;
     }
 
-    void test();
+    //登录
+    bool login(QString strUser , QString strPass);
+
+    //获取所有用户
+    QVector<QStringList> getUser(QString strCondition="");
+
+    //添加用户
+    void AddUser(QVector<QStringList>);
+
+    //删除
+    void DelUser(QString strid);
+
+    //获取所有图书
+    QVector<QStringList> getBooks(QString strCondition="");
+
+    //增加图书
+    void AddBooks(QVector<QStringList>);
+
+    //修改图书
+    void UpdateBooks(QStringList);
+
+    //删除图书
+    void DelBooks(QString strid);
+
+    //图书归还
+    void RtnBooks();
+
+    //图书借阅
+    void BrwBooks();
+
+    //获取借阅记录
+    QVector<QStringList> getRecord(QString strCondition="");
+
+    //清空借阅记录
+    void ClrRecord();
+
+private:
 };
 
 #endif // SQLMGR_H
