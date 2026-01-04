@@ -41,16 +41,16 @@ public:
     void DelBooks(QString strid);
 
     //图书归还
-    void RtnBooks();
+    QString RtnBooks(QString strUserId,QString strBookid);
 
     //图书借阅
-    void BrwBooks();
+    QString BrwBooks(QString strUserId,QString strBookid);
 
     //获取借阅记录
     QVector<QStringList> getRecord(QString strCondition="");
 
     //清空借阅记录
-    void ClrRecord();
+    QString ClrRecord();
 
 private:
 };
