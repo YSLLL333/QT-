@@ -1,7 +1,7 @@
 #include "bookmgr.h"
 #include "ui_bookmgr.h"
 #include"lib/sqlmgr.h"
-
+#include "bookau.h"
 #include <QMessageBox>
 BookMgr::BookMgr(QWidget *parent)
     : QWidget(parent)
@@ -36,13 +36,25 @@ void BookMgr::initPage(QString strCondition)
 
 void BookMgr::on_btn_add_clicked()
 {
-
+    BookAU dlg;
+    dlg.exec();
+    initPage();
 }
 
 
 void BookMgr::on_btn_update_clicked()
 {
-
+    int r = ui->tableView->currentIndex().row();
+    if(r<0){
+        QMessageBox::information(nullptr,"信息","无选中图书");
+    }else
+    {
+        auto id = m_model.item(r,0)->text();
+        BookAU dlg;
+        dlg.setType(id.toInt());
+        dlg.exec();
+        initPage();
+    }
 }
 
 

@@ -104,6 +104,36 @@ QVector<QStringList> SqlMgr::getBooks(QString strCondition)
     return vec;
 }
 
+void SqlMgr::AddBooks(QVector<QStringList> vec)
+{
+    if(0 == vec.size()){
+        return;
+    }
+    auto ldata = vec[0];
+    QSqlQuery q(m_db);
+    QString strSql = QString("INSERT INTO book "
+                             "values(null,'%1','%2','%3','%4','%5',%6,'')")
+                         .arg(ldata[1]).arg(ldata[2]).arg(ldata[3]).arg(ldata[4]).arg(ldata[5]).arg(ldata[6]);
+    bool ret = q.exec(strSql);
+
+    if(!ret){
+        qDebug()<<q.lastError().text();
+    }
+}
+
+void SqlMgr::UpdateBooks(QStringList ldata)
+{
+    QSqlQuery q(m_db);
+    QString strSql = QString("UPDATE book"
+                             " set name = '%1',press='%2',type1 = '%3',type2 = '%4',type3 = '%5',cnt = '%6'"" where bookid =%7")
+                         .arg(ldata[1]).arg(ldata[2]).arg(ldata[3]).arg(ldata[4]).arg(ldata[5]).arg(ldata[6]).arg(ldata[0]);
+    bool ret = q.exec(strSql);
+
+    if(!ret){
+        qDebug()<<q.lastError().text();
+    }
+}
+
 QString SqlMgr::DelBooks(QString strid)
 {
     QString strRet;

@@ -1,4 +1,6 @@
 FORMS += \
+    $$PWD/bookau.ui \
+    $$PWD/bookgs.ui \
     $$PWD/bookmgr.ui \
     $$PWD/login.ui \
     $$PWD/mainwindow.ui \
@@ -6,6 +8,8 @@ FORMS += \
     $$PWD/usermgr.ui
 
 HEADERS += \
+    $$PWD/bookau.h \
+    $$PWD/bookgs.h \
     $$PWD/bookmgr.h \
     $$PWD/login.h \
     $$PWD/mainwindow.h \
@@ -13,6 +17,8 @@ HEADERS += \
     $$PWD/usermgr.h
 
 SOURCES += \
+    $$PWD/bookau.cpp \
+    $$PWD/bookgs.cpp \
     $$PWD/bookmgr.cpp \
     $$PWD/login.cpp \
     $$PWD/main.cpp \
