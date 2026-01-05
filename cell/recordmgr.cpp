@@ -14,3 +14,9 @@ RecordMgr::~RecordMgr()
 {
     delete ui;
 }
+
+void RecordMgr::on_le_srch_textChanged(const QString &arg1)
+{
+
+}
+

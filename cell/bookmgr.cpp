@@ -14,3 +14,9 @@ BookMgr::~BookMgr()
 {
     delete ui;
 }
+
+void BookMgr::on_btn_add_clicked()
+{
+
+}
+
