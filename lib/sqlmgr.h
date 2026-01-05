@@ -40,7 +40,7 @@ public:
     void UpdateBooks(QStringList);
 
     //删除图书
-    void DelBooks(QString strid);
+    QString DelBooks(QString strid);
 
     //图书归还
     QString RtnBooks(QString strUserId,QString strBookid);

@@ -73,7 +73,7 @@ void SqlMgr::AddUser(QVector<QStringList> v)
 void SqlMgr::DelUser(QString strid)
 {
     QSqlQuery q(m_db);
-    QString strSql = QString("delete from user where userid =%1").arg(strid);
+    QString strSql = QString("delete from user where bookid =%1").arg(strid);
     bool ret = q.exec(strSql);
     if(!ret){
         qDebug()<<q.lastError().text();
@@ -103,6 +103,21 @@ QVector<QStringList> SqlMgr::getBooks(QString strCondition)
     }
     return vec;
 }
+
+QString SqlMgr::DelBooks(QString strid)
+{
+    QString strRet;
+    QSqlQuery q(m_db);
+    QString strSql = QString("delete from book where bookid =%1").arg(strid);
+    bool ret = q.exec(strSql);
+    if(!ret){
+        qDebug()<<q.lastError().text();
+        strRet ="删除失败，图书可能在被借阅中";
+    }
+    return strRet;
+}
+
+
 
 QVector<QStringList> SqlMgr::getRecord(QString strCondition)
 {

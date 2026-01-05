@@ -1,6 +1,8 @@
 #include "bookmgr.h"
 #include "ui_bookmgr.h"
 #include"lib/sqlmgr.h"
+
+#include <QMessageBox>
 BookMgr::BookMgr(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::BookMgr)
@@ -46,7 +48,16 @@ void BookMgr::on_btn_update_clicked()
 
 void BookMgr::on_btn_del_clicked()
 {
-
+    int r = ui->tableView->currentIndex().row();
+    if(r<0){
+        QMessageBox::information(nullptr,"信息","无选中图书");
+    }else
+    {
+        auto id = m_model.item(r,0)->text();
+        auto str = SqlMgr::getinstance()->DelBooks(id);
+        QMessageBox::information(nullptr,"信息",str.isEmpty()?"删除图书成功":str);
+        initPage();
+    }
 }
 
 
@@ -64,6 +75,8 @@ void BookMgr::on_btn_rtn_clicked()
 
 void BookMgr::on_le_srch_textChanged(const QString &arg1)
 {
+    QString strCond = QString("where name like '%%1%' or type1 like '%%1%'or type2 like '%%1%'or type3 like '%%1%'").arg(arg1);
+    initPage(strCond);
 
 }
 
