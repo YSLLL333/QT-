@@ -31,7 +31,7 @@
     <widget class="QWidget" name="widget" native="true">
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="le_srch">
         <property name="name" stdset="0">
          <string>le</string>
         </property>
@@ -64,7 +64,7 @@
        </spacer>
       </item>
       <item row="0" column="2">
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="btn_clr">
         <property name="text">
          <string>清空记录</string>
         </property>

@@ -49,11 +49,13 @@ void MainWindow::dealMenu(){
             break;
         }
         if("btn_book"==str){
+            m_bookPage->initPage();
             ui->stackedWidget->setCurrentIndex(1);
 
             break;
         }
         if("btn_his"==str){
+            m_recordPage->initPage();
             ui->stackedWidget->setCurrentIndex(2);
 
             break;

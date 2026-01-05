@@ -80,3 +80,61 @@ void SqlMgr::DelUser(QString strid)
     }
 }
 
+QVector<QStringList> SqlMgr::getBooks(QString strCondition)
+{
+    QSqlQuery q(m_db);
+    QString strSql = QString("Select * from book %1").arg(strCondition);
+
+    QVector<QStringList> vec;
+    bool ret = q.exec(strSql);
+    if(!ret){
+        qDebug()<<q.lastError().text();
+    }else
+    {
+        int iC = q.record().count();
+        QStringList l;
+        while(q.next()){
+            l.clear();
+            for(int i=0;i<iC;i++ ){
+                l<<q.value(i).toString();
+            }
+            vec.push_back(l);
+        }
+    }
+    return vec;
+}
+
+QVector<QStringList> SqlMgr::getRecord(QString strCondition)
+{
+    QSqlQuery q(m_db);
+    QString strSql = QString("Select * from record %1").arg(strCondition);
+
+    QVector<QStringList> vec;
+    bool ret = q.exec(strSql);
+    if(!ret){
+        qDebug()<<q.lastError().text();
+    }else
+    {
+        int iC = q.record().count();
+        QStringList l;
+        while(q.next()){
+            l.clear();
+            for(int i=0;i<iC;i++ ){
+                l<<q.value(i).toString();
+            }
+            vec.push_back(l);
+        }
+    }
+    return vec;
+}
+
+void SqlMgr::ClrRecord()
+{
+    QSqlQuery q(m_db);
+    QString strSql = QString("DELETE from book ;DELETE FROM sqlite_sequence WHERE name = 'book';");
+    bool ret = q.exec(strSql);
+    if(!ret){
+        qDebug()<<q.lastError().text();
+    }
+}
+

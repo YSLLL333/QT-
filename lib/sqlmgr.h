@@ -52,7 +52,7 @@ public:
     QVector<QStringList> getRecord(QString strCondition="");
 
     //清空借阅记录
-    QString ClrRecord();
+    void ClrRecord();
 
 private:
     QSqlDatabase m_db;
