@@ -73,7 +73,7 @@ void SqlMgr::AddUser(QVector<QStringList> v)
 void SqlMgr::DelUser(QString strid)
 {
     QSqlQuery q(m_db);
-    QString strSql = QString("delete from user where bookid =%1").arg(strid);
+    QString strSql = QString("delete from user where userid =%1").arg(strid);
     bool ret = q.exec(strSql);
     if(!ret){
         qDebug()<<q.lastError().text();
