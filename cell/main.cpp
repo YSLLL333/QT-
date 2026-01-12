@@ -4,6 +4,8 @@
 #include "login.h"
 
 #include "lib/sqlmgr.h"
+
+//剩余借阅sql 归还sql 登录sql
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

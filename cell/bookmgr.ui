@@ -37,10 +37,43 @@
    <item row="1" column="0">
     <widget class="QWidget" name="widget" native="true">
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="3">
-       <widget class="QPushButton" name="btn_update">
+      <item row="0" column="4">
+       <widget class="QPushButton" name="btn_del">
         <property name="text">
-         <string>修改</string>
+         <string>删除</string>
+        </property>
+        <property name="name" stdset="0">
+         <string>btn</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QPushButton" name="btn_brw">
+        <property name="text">
+         <string>借阅</string>
+        </property>
+        <property name="name" stdset="0">
+         <string>btn</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>218</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="btn_add">
+        <property name="text">
+         <string>增加</string>
         </property>
         <property name="name" stdset="0">
          <string>btn</string>
@@ -73,53 +106,10 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="4">
-       <widget class="QPushButton" name="btn_del">
+      <item row="0" column="3">
+       <widget class="QPushButton" name="btn_update">
         <property name="text">
-         <string>删除</string>
-        </property>
-        <property name="name" stdset="0">
-         <string>btn</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="5">
-       <widget class="QPushButton" name="btn_brw">
-        <property name="text">
-         <string>借阅</string>
-        </property>
-        <property name="name" stdset="0">
-         <string>btn</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="7">
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Orientation::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>218</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="2">
-       <widget class="QPushButton" name="btn_add">
-        <property name="text">
-         <string>增加</string>
-        </property>
-        <property name="name" stdset="0">
-         <string>btn</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QPushButton" name="btn_rtn">
-        <property name="text">
-         <string>归还</string>
+         <string>修改</string>
         </property>
         <property name="name" stdset="0">
          <string>btn</string>

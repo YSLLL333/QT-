@@ -1,7 +1,10 @@
+#include "bookgs.h"
 #include "recordmgr.h"
 #include "ui_recordmgr.h"
 
 #include "lib/sqlmgr.h"
+
+#include <QMessageBox>
 
 RecordMgr::RecordMgr(QWidget *parent)
     : QWidget(parent)
@@ -42,5 +45,13 @@ void RecordMgr::on_btn_clr_clicked()
 {
     SqlMgr::getinstance()->ClrRecord();
     initPage();
+}
+
+
+void RecordMgr::on_pushButton_clicked()
+{
+    BookGS dlg;
+    int ret = dlg.exec();
+    QMessageBox::information(nullptr,"信息",ret?"归还成功":"归还失败");
 }
 

@@ -3,6 +3,8 @@
 #include"lib/sqlmgr.h"
 #include "bookau.h"
 #include <QMessageBox>
+#include "bookgs.h"
+
 BookMgr::BookMgr(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::BookMgr)
@@ -75,7 +77,15 @@ void BookMgr::on_btn_del_clicked()
 
 void BookMgr::on_btn_brw_clicked()
 {
-
+     int r = ui->tableView->currentIndex().row();
+    if(r<0)
+     {
+         return;
+    }
+    auto id = m_model.item(r,0)->text();
+    BookGS dlg;
+    int ret = dlg.exec();
+    QMessageBox::information(nullptr,"信息",ret?"借阅成功":"借阅失败");
 }
 
 
