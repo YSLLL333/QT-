@@ -25,7 +25,7 @@ private slots:
 
     void on_btn_brw_clicked();
 
-    void on_btn_rtn_clicked();
+
 
     void on_le_srch_textChanged(const QString &arg1);
 

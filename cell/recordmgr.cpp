@@ -25,8 +25,9 @@ void RecordMgr::initPage(QString strCondition)
 {
     auto l=SqlMgr::getinstance()->getRecord(strCondition);
     m_model.clear();
-    m_model.setHorizontalHeaderLabels(QStringList{"图书id","图书名称","价格","类型1","类型2","类型3","数量","图片","XX","XX","XX","XX","XX","XX","XX"});
-    for(int i =0;i<l.size();i++){    QList<QStandardItem*> items;
+    m_model.setHorizontalHeaderLabels(QStringList{"id","图书id","借阅用户id","类型1","类型2","类型3","数量","图片","XX","XX","XX","XX","XX","XX","XX"});
+    for(int i =0;i<l.size();i++){
+        QList<QStandardItem*> items;
 
         for(int j=0;j<l[i].size();j++){
             items.append(new QStandardItem(l[i][j]));
@@ -55,7 +56,7 @@ void RecordMgr::on_pushButton_clicked()
     {
         return;
     }
-    auto id = m_model.item(r,2)->text();
+    auto id = m_model.item(r,1)->text();
     BookGS dlg;
     dlg.setType(true);
     dlg.setBookid(id.toInt());

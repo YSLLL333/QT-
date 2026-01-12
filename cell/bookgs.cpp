@@ -18,6 +18,7 @@ BookGS::~BookGS()
 void BookGS::setType(bool isReturn)
 {
     m_isReturn = isReturn;
+    ui->btn_get->setText("归还");
 }
 
 void BookGS::setBookid(int id)

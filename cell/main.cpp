@@ -5,15 +5,15 @@
 
 #include "lib/sqlmgr.h"
 
-//剩余借阅sql 归还sql 登录sql
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
     SqlMgr::getinstance()->init();
-    int bookid = 0;
-    qDebug()<<"login ret"<<SqlMgr::getinstance()->login("xiaoz","123",bookid);
-    auto v = SqlMgr::getinstance()->getUser("where username like '%x%' or nickname like '%t%' ");
+    //int bookid = 0;
+    //qDebug()<<"login ret"<<SqlMgr::getinstance()->login("xiaoz","123",bookid);
+    //auto v = SqlMgr::getinstance()->getUser("where username like '%x%' or nickname like '%t%' ");
     Login dlg;
     int ret=dlg.exec();
 

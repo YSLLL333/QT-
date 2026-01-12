@@ -98,10 +98,6 @@ void BookMgr::on_btn_brw_clicked()
 }
 
 
-void BookMgr::on_btn_rtn_clicked()
-{
-
-}
 
 
 void BookMgr::on_le_srch_textChanged(const QString &arg1)
