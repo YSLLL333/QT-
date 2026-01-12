@@ -15,6 +15,11 @@ BookGS::~BookGS()
     delete ui;
 }
 
+void BookGS::setType(bool isReturn)
+{
+    m_isReturn = isReturn;
+}
+
 void BookGS::setBookid(int id)
 {
     m_bookid = id;
@@ -31,7 +36,12 @@ void BookGS::on_btn_get_clicked()
             this->done(0);
             break;
         }
-        SqlMgr::getinstance()->BrwBooks(QString::number(userid),QString::number(m_bookid));
+        if(m_isReturn){
+             SqlMgr::getinstance()->RtnBooks(QString::number(userid),QString::number(m_bookid));
+        }else{
+             SqlMgr::getinstance()->BrwBooks(QString::number(userid),QString::number(m_bookid));
+        }
+
         this->done(1);
     }while(false);
 

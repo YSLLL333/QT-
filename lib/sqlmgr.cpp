@@ -29,8 +29,10 @@ bool SqlMgr::login(QString strUser, QString strPass,int &Userid)
     if(!ret){
         qDebug()<<q.lastError().text();
     }else{
-        q.next();
-        Userid = q.value(0).toInt();
+        ret=q.next();
+        if(ret){
+            Userid = q.value(0).toInt();
+        }
     }
     return ret;
 }
@@ -153,6 +155,18 @@ QString SqlMgr::DelBooks(QString strid)
 
 QString SqlMgr::RtnBooks(QString strUserId, QString strBookid)
 {
+    QSqlQuery q(m_db);
+    QString strSql = QString("update book set cnt = cnt+1 where bookid =%1;").arg(strBookid);
+    bool ret = q.exec(strSql);
+    if(!ret){
+        qDebug()<<q.lastError().text();
+    }
+    strSql=QString("delete from record where bookid =%2 and userid=%3").arg(strBookid).arg(strUserId);
+    ret = q.exec(strSql);
+    if(!ret){
+        qDebug()<<q.lastError().text();
+    }
+    return QString("");
 
 }
 
@@ -160,13 +174,19 @@ QString SqlMgr::BrwBooks(QString strUserId, QString strBookid)
 {
     //实现图书借阅
     QSqlQuery q(m_db);
-    QString strSql = QString("update book set cnt = cnt-1 where bookid =%1;"
-                             "insert into record VALUES(null,%2,%3,%4,%5)")
-                         .arg(strBookid).arg(strUserId).arg(strBookid).arg(QDateTime::currentSecsSinceEpoch()).arg(QDateTime::currentSecsSinceEpoch()+3600*24*10);
+
+    QString strSql = QString("update book set cnt = cnt-1 where bookid =%1;").arg(strBookid);
     bool ret = q.exec(strSql);
     if(!ret){
         qDebug()<<q.lastError().text();
     }
+    strSql=QString("insert into record VALUES(null,%1,%2,%3,%4)").arg(strBookid).arg(strUserId).arg(QDateTime::currentSecsSinceEpoch()).arg(QDateTime::currentSecsSinceEpoch()+3600*24*10);;
+    ret = q.exec(strSql);
+    if(!ret){
+        qDebug()<<q.lastError().text();
+    }
+    return QString("");
+
     return QString("");
 }
 
@@ -175,7 +195,7 @@ QString SqlMgr::BrwBooks(QString strUserId, QString strBookid)
 QVector<QStringList> SqlMgr::getRecord(QString strCondition)
 {
     QSqlQuery q(m_db);
-    QString strSql = QString("Select * from record %1").arg(strCondition);
+    QString strSql = QString("Select * from record join user using(userid) join book using(bookid) %1").arg(strCondition);
 
     QVector<QStringList> vec;
     bool ret = q.exec(strSql);

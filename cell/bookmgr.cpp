@@ -89,9 +89,12 @@ void BookMgr::on_btn_brw_clicked()
         return;
     }
     BookGS dlg;
-    dlg.setBookid(id);
+    dlg.setBookid(id.toInt());
     int ret = dlg.exec();
     QMessageBox::information(nullptr,"信息",ret?"借阅成功":"借阅失败");
+    if(ret){
+        initPage();
+    }
 }
 
 
