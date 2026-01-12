@@ -19,7 +19,7 @@ public:
 
     void init();
     //登录
-    bool login(QString strUser , QString strPass);
+    bool login(QString strUser , QString strPass,int &Userid);
 
     //获取所有用户
     QVector<QStringList> getUser(QString strCondition="");

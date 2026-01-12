@@ -83,7 +83,13 @@ void BookMgr::on_btn_brw_clicked()
          return;
     }
     auto id = m_model.item(r,0)->text();
+    auto cnt = m_model.item(r,6)->text().toInt();
+    if(cnt<=0){
+        QMessageBox::information(nullptr,"信息","借阅失败没有库存");
+        return;
+    }
     BookGS dlg;
+    dlg.setBookid(id);
     int ret = dlg.exec();
     QMessageBox::information(nullptr,"信息",ret?"借阅成功":"借阅失败");
 }

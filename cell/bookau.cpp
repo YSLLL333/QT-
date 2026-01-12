@@ -18,6 +18,16 @@ void BookAU::setType(int id)
 {
     m_id = id;
     //执行sql语句获取图书信息并显示到对应的控件上
+    auto l = SqlMgr::getinstance()->getBooks(QString("where book id =%1").arg(id));
+    if(1 == l.size()){
+        auto data=l[0];
+        ui->le_name->setText(data[1]);
+        ui->le_press->setText(data[2]);
+        ui->cb1->setCurrentText(data[3]);
+        ui->cb2->setCurrentText(data[4]);
+        ui->cb3->setCurrentText(data[5]);
+        ui->le_cnt->setText(data[6]);
+    }
 }
 
 void BookAU::on_btn_ok_clicked()

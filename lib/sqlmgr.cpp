@@ -3,6 +3,7 @@
 #include<QSqlQuery>
 #include<QSqlError>
 #include<QSqlRecord>
+#include <QDateTime>
 SqlMgr* SqlMgr::instance = nullptr;
 
 SqlMgr::SqlMgr() {}
@@ -20,13 +21,16 @@ void SqlMgr::init()
     qDebug()<<m_db.open();
 }
 
-bool SqlMgr::login(QString strUser, QString strPass)
+bool SqlMgr::login(QString strUser, QString strPass,int &Userid)
 {
     QSqlQuery q(m_db);
     QString strSql = QString("Select * from user where username='%1' and password ='%2'").arg(strUser).arg(strPass);
     bool ret = q.exec(strSql);
     if(!ret){
         qDebug()<<q.lastError().text();
+    }else{
+        q.next();
+        Userid = q.value(0).toInt();
     }
     return ret;
 }
@@ -145,6 +149,25 @@ QString SqlMgr::DelBooks(QString strid)
         strRet ="删除失败，图书可能在被借阅中";
     }
     return strRet;
+}
+
+QString SqlMgr::RtnBooks(QString strUserId, QString strBookid)
+{
+
+}
+
+QString SqlMgr::BrwBooks(QString strUserId, QString strBookid)
+{
+    //实现图书借阅
+    QSqlQuery q(m_db);
+    QString strSql = QString("update book set cnt = cnt-1 where bookid =%1;"
+                             "insert into record VALUES(null,%2,%3,%4,%5)")
+                         .arg(strBookid).arg(strUserId).arg(strBookid).arg(QDateTime::currentSecsSinceEpoch()).arg(QDateTime::currentSecsSinceEpoch()+3600*24*10);
+    bool ret = q.exec(strSql);
+    if(!ret){
+        qDebug()<<q.lastError().text();
+    }
+    return QString("");
 }
 
 

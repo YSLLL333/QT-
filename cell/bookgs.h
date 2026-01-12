@@ -14,9 +14,15 @@ class BookGS : public QDialog
 public:
     explicit BookGS(QWidget *parent = nullptr);
     ~BookGS();
+    void setBookid(int id);
+private slots:
+    void on_btn_get_clicked();
+
+    void on_btn_cancel_clicked();
 
 private:
     Ui::BookGS *ui;
+    int m_bookid;
 };
 
 #endif // BOOKGS_H
