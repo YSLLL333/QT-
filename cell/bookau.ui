@@ -197,6 +197,11 @@
        <string>穿越</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>玄幻</string>
+      </property>
+     </item>
     </widget>
    </item>
    <item row="4" column="1" colspan="2">
@@ -251,6 +256,11 @@
        <string>穿越</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>玄幻</string>
+      </property>
+     </item>
     </widget>
    </item>
    <item row="3" column="1" colspan="2">
@@ -303,6 +313,11 @@
      <item>
       <property name="text">
        <string>穿越</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>玄幻</string>
       </property>
      </item>
     </widget>
